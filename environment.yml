@@ -1,14 +1,14 @@
-name: fair2.2-irf
 channels:
   - conda-forge
   - nodefaults
 dependencies:
   - python=3.11
-  - fair=2.2.2
+  - fair=2.2.4
   - jupyter
   - jupytext
   - matplotlib
   - netcdf4
   - numpy
   - pandas
+  - statsmodels
   - xarray

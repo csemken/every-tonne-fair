@@ -1,0 +1,11 @@
+label,scenario
+A,2021-11-09_1__high__C__SSP1BL__exclude
+B,2021-11-09_1__low__U__SSP1BL__exclude
+a,2021-11-09_1__high__C__2030__exclude
+b,2021-11-09_1__high__C__2030__include
+c,2021-11-09_1__low__C__2030__exclude
+d,2021-11-09_1__low__C__2030__include
+e,2021-11-09_1__high__U__2030__exclude
+f,2021-11-09_1__low__U__2030__exclude
+g,2021-11-09_1__high__U__2030__include
+h,2021-11-09_1__low__U__2030__include

@@ -1,3 +1,6 @@
+# huge emissions file
+data/emissions/scenarios_12Nov2021a_CR.csv
+
 # don't commit notebooks, plots or outputs
 *.ipynb
 plots/
