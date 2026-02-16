@@ -153,7 +153,6 @@ for scenario in scenarios_list:
         f.emissions.loc[dict(timepoints=np.arange(2015.5, 2101), specie=variable_mapping[variable], scenario=scenario)] = (
             filtered_emissions_df.loc[(filtered_emissions_df['scenario']==scenario) & (filtered_emissions_df['variable']==variable), 2015.5:].values.T
         )
-        #f.emissions.loc[dict(timepoints=np.arange(2015.5, 2101), specie=specie, scenario=scenario)] = 
 
 # %%
 fill(
