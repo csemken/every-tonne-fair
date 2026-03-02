@@ -27,11 +27,16 @@ jupytext --sync notebooks/*
 
 ## Replicate
 
-Execute `notebooks/historical-spinup.ipynb`. Replication requires at least 16GB of RAM and takes approximately 10 minutes.
+Execute the notebooks in the following order:
+1. `historical-spinup.ipynb`
+2. `alternative-scenarios.ipynb`
+3. `correlate_rho_T.ipynb`
 
-To re-export the notebook, run:
+Replication requires at least 16GB of RAM and takes approximately 10 minutes.
+
+To re-export the notebooks, run:
 ```
-jupytext --to py:percent notebooks/historical-spinup.ipynb
+jupytext --to py:percent notebooks/*.ipynb
 ```
 
 ## Development
