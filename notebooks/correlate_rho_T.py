@@ -21,10 +21,10 @@ import statsmodels.graphics.gofplots
 import xarray as xr
 
 # %%
-irf = xr.load_dataset('../output/irf_1GtCO2.nc')
+irf = xr.load_dataset('../output/irf_1GtCO2_new_scenarios.nc')
 
 # %%
-# pooling 8 SSPs
+# pooling 10 new scenarios
 irf_2100 = irf['temperature'].sel(timebounds=2101).mean(dim='scenario')
 
 # %%

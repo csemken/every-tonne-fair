@@ -235,3 +235,50 @@ os.makedirs('../output/', exist_ok=True)
 ds.to_netcdf('../output/scenario_projections_fair.nc')
 
 # %%
+
+# %%
+year_of_pulse = 2025
+simulation_start = 1750
+index_of_pulse = year_of_pulse - simulation_start
+index_of_pulse
+
+# %%
+new_emissions = f.emissions.copy()
+new_emissions[index_of_pulse, :, :, 0] = new_emissions[index_of_pulse, :, :, 0] + 1
+
+# %%
+f_irf = FAIR(ch4_method='Thornhill2021')
+f_irf.define_time(1750, 2500, 1)
+f_irf.define_scenarios(scenarios_list)
+f_irf.define_configs(configs)
+f_irf.define_species(species, properties)
+f_irf.allocate()
+f_irf.fill_from_csv(
+    forcing_file='../data/forcing/volcanic_solar.csv',
+)
+f_irf.emissions = new_emissions
+fill(
+    f_irf.forcing,
+    f_irf.forcing.sel(specie="Volcanic") * df_configs["forcing_scale[Volcanic]"].values.squeeze(),
+    specie="Volcanic",
+)
+fill(
+    f_irf.forcing,
+    f_irf.forcing.sel(specie="Solar") * df_configs["forcing_scale[Solar]"].values.squeeze(),
+    specie="Solar",
+)
+
+f_irf.fill_species_configs("../data/fair-calibration/species_configs_properties_1.4.0.csv")
+f_irf.override_defaults("../data/fair-calibration/calibrated_constrained_parameters_1.4.0.csv")
+
+# initial conditions
+initialise(f_irf.concentration, f_irf.species_configs["baseline_concentration"])
+initialise(f_irf.forcing, 0)
+initialise(f_irf.temperature, 0)
+initialise(f_irf.cumulative_emissions, 0)
+initialise(f_irf.airborne_emissions, 0)
+
+f_irf.run(progress=False)
+
+for scenario in batch_scenarios:
+    irf[scenario] = (f_irf.temperature-f.temperature).sel(scenario=scenario, layer=0, timebounds=np.arange(year_of_pulse, 2501))
