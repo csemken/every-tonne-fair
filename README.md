@@ -28,9 +28,11 @@ jupytext --sync notebooks/*
 ## Replicate
 
 Execute the notebooks in the following order:
-1. `historical-spinup.ipynb`
-2. `alternative-scenarios.ipynb`
+1. `alternative-scenarios.ipynb`
+2. `alternative-scenarios-pulse.ipynb`
 3. `correlate_rho_T.ipynb`
+
+The legacy notebook that runs the SSPs is included but no longer part of the workflow.
 
 Replication requires at least 16GB of RAM and takes approximately 10 minutes.
 
